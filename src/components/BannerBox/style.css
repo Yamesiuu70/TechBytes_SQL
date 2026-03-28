@@ -1,0 +1,22 @@
+.banner-box {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px; /* replaces rounded-lg */
+  }
+  
+  .banner-link {
+    display: block;
+  }
+  
+  .banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease; /* smooth hover animation */
+  }
+  
+  .banner-box:hover .banner-img {
+    transform: scale(1.05) rotate(1deg); /* replaces group-hover:scale-105 rotate-1 */
+  }
+  
