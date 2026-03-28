@@ -1,0 +1,130 @@
+/* Promo strip */
+.top-strip {
+  background-color: #f85606;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 20px;
+  font-size: 13px;
+}
+
+.top-strip .top-links a {
+  color: #fff;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.top-strip .top-links a:hover {
+  text-decoration: underline;
+}
+
+/* Main header row */
+.main-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 45px;
+  height: auto;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-search {
+  flex: 1;
+  margin: 0 20px;
+}
+
+/* Search box */
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  background-color: #f85606;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #e04d05;
+}
+
+/* Icons + account */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.signin-text {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.signin-text:hover {
+  color: #f85606;
+}
+
+.icon-badge {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #f85606;
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  padding: 2px 5px;
+}
+
+/* Sub-header */
+.sub-header {
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 10px 20px;
+}
+
+.sub-header .nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.sub-header .nav-link:hover,
+.sub-header .nav-link.active {
+  color: #f85606;
+}
