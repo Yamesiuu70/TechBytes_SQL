@@ -1,0 +1,76 @@
+/* ==== FEATURED SECTION ==== */
+/* ==== FEATURED SECTION (Reduced Height) ==== */
+.featured-section {
+  background: linear-gradient(90deg, #f4f6f8, #e9ecf0) !important;
+  padding: 5px 0 !important;
+  min-height: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==== SWIPER SLIDE IMAGE SIZE ==== */
+.product-slide img {
+  width: 100%;
+  height: 500px !important;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ==== SWIPER CONTAINER ==== */
+.product-slider-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: transparent;
+  padding: 0;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #333;
+}
+
+/* ==== BANNER SECTION ==== */
+.banner-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.banner-left {
+  height: 250px; /* reduced from 400px */
+}
+
+.image-swiper {
+  height: 100%;
+}
+
+.main-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.banner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 250px; /* reduced from 400px */
+}
+
+.small-banner {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.small-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
