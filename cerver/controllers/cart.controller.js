@@ -84,3 +84,40 @@ export async function addProductToCart(req, res) {
         res.status(500).json({ success: false, error: error.message });
     }
 }
+
+// ============================================
+// GET USER CART (with availability check)
+// ============================================
+export async function getUserCart(req, res) {
+    try {
+        const userId = req.userId;
+        const cartItems = await getCartWithProductDetails(userId);
+        
+        // Format for frontend and filter out unavailable products
+        const formattedCart = cartItems
+            .filter(item => {
+                // ✅ Normalize availability check
+                const isAvailable = item.product_availability === true || item.product_availability === 1;
+                return isAvailable;
+            })
+            .map(item => ({
+                _id: item.cart_id,
+                productId: item.productId,
+                quantity: item.quantity,
+                userId: item.userId,
+                product: {
+                    id: item.product_id,
+                    name: item.product_name,
+                    price: item.product_price,
+                    photo: item.product_photo,
+                    details: item.product_details,
+                    availability: item.product_availability === true || item.product_availability === 1 ? 1 : 0
+                }
+            }));
+
+        res.json({ success: true, cart: formattedCart });
+    } catch (error) {
+        console.error("Fetch cart error:", error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+}
