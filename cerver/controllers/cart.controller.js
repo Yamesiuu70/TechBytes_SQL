@@ -121,3 +121,45 @@ export async function getUserCart(req, res) {
         res.status(500).json({ success: false, error: error.message });
     }
 }
+
+// ============================================
+// UPDATE CART ITEM QUANTITY
+// ============================================
+export async function updateCartItemQuantity(req, res) {
+    try {
+        const { itemId } = req.params;
+        const { quantity } = req.body;
+        const userId = req.userId;
+
+        if (!quantity || quantity < 1) {
+            return res.status(400).json({ 
+                success: false, 
+                message: "Quantity must be >= 1" 
+            });
+        }
+
+        const parsedItemId = parseInt(itemId);
+        if (isNaN(parsedItemId)) {
+            return res.status(400).json({ 
+                success: false, 
+                message: "Invalid item ID" 
+            });
+        }
+
+        const cartItem = await getCartProductById(parsedItemId);
+
+        if (!cartItem || cartItem.userId !== userId) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "Cart item not found" 
+            });
+        }
+
+        await updateCartProductQuantity(parsedItemId, quantity);
+        res.json({ success: true, message: "Cart updated" });
+
+    } catch (error) {
+        console.error("Update cart error:", error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+}
