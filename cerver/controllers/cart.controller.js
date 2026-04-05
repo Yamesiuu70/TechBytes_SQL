@@ -163,3 +163,37 @@ export async function updateCartItemQuantity(req, res) {
         res.status(500).json({ success: false, error: error.message });
     }
 }
+
+// ============================================
+// DELETE CART ITEM
+// ============================================
+export async function deleteCartItem(req, res) {
+    try {
+        const { itemId } = req.params;
+        const userId = req.userId;
+
+        const parsedItemId = parseInt(itemId);
+        if (isNaN(parsedItemId)) {
+            return res.status(400).json({ 
+                success: false, 
+                message: "Invalid item ID" 
+            });
+        }
+
+        const cartItem = await getCartProductById(parsedItemId);
+
+        if (!cartItem || cartItem.userId !== userId) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "Cart item not found" 
+            });
+        }
+
+        await deleteCartProductById(parsedItemId);
+        res.json({ success: true, message: "Item removed" });
+
+    } catch (error) {
+        console.error("Delete cart error:", error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+}
