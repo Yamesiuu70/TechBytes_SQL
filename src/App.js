@@ -8,21 +8,30 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 // Pages
+import ReportPage from "./Pages/Report";
 import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
-import Order from "./Pages/Order"; // ✅ Order page added
+import Order from "./Pages/Order";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Profile from "./Pages/Profile";
 import ProfileInformation from "./Pages/Profile/Information";
 import Dashboard from "./Pages/DASHBOARD";
 import HelpCenter from "./Pages/Help";
-import Verification from './Pages/Verification';
-import SearchPage from './Pages/SearchPage';
-import OrderTracking from "./Pages/OrderTracking"; // make sure the path is correct
+import MessagingPage from "./Pages/Messaging";
+import Verification from "./Pages/Verification";
+import SearchPage from "./Pages/SearchPage";
+import OrderTracking from "./Pages/OrderTracking";
 
+// Order Status Pages
+import OrderSuccess from "./Pages/Order/Success";
+import OrderFail from "./Pages/Order/Fail";
+import OrderCancel from "./Pages/Order/Cancel";
+import OrderError from "./Pages/Order/Error";
+
+// Profile Orders Page
+import ProfileOrders from "./Pages/Profile/Orders";
 
 // Product Pages (category lists)
 import ProductListing from "./Pages/ProductListing";
@@ -47,7 +56,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Public routes */}
+          {/* ===== PUBLIC ROUTES ===== */}
           <Route
             path="/"
             element={
@@ -80,8 +89,6 @@ function App() {
               </LayoutWithHeaderFooter>
             }
           />
-
-          {/* SearchPage Route */}
           <Route
             path="/search"
             element={
@@ -90,8 +97,50 @@ function App() {
               </LayoutWithHeaderFooter>
             }
           />
+          <Route
+            path="/help"
+            element={
+              <LayoutWithHeaderFooter>
+                <HelpCenter />
+              </LayoutWithHeaderFooter>
+            }
+          />
 
-          {/* Product category pages */}
+          {/* ===== ORDER STATUS PAGES (PUBLIC) ===== */}
+          <Route
+            path="/order/success"
+            element={
+              <LayoutWithHeaderFooter>
+                <OrderSuccess />
+              </LayoutWithHeaderFooter>
+            }
+          />
+          <Route
+            path="/order/fail"
+            element={
+              <LayoutWithHeaderFooter>
+                <OrderFail />
+              </LayoutWithHeaderFooter>
+            }
+          />
+          <Route
+            path="/order/cancel"
+            element={
+              <LayoutWithHeaderFooter>
+                <OrderCancel />
+              </LayoutWithHeaderFooter>
+            }
+          />
+          <Route
+            path="/order/error"
+            element={
+              <LayoutWithHeaderFooter>
+                <OrderError />
+              </LayoutWithHeaderFooter>
+            }
+          />
+
+          {/* ===== PRODUCT CATEGORY PAGES ===== */}
           <Route
             path="/desktops"
             element={
@@ -133,7 +182,7 @@ function App() {
             }
           />
 
-          {/* Product detail routes */}
+          {/* ===== PRODUCT DETAIL PAGES ===== */}
           <Route
             path="/product/arms/:id"
             element={
@@ -175,17 +224,7 @@ function App() {
             }
           />
 
-          {/* Public Help route */}
-          <Route
-            path="/help"
-            element={
-              <LayoutWithHeaderFooter>
-                <HelpCenter />
-              </LayoutWithHeaderFooter>
-            }
-          />
-
-          {/* Protected user routes */}
+          {/* ===== PROTECTED USER ROUTES ===== */}
           <Route element={<ProtectedRoute allowedRoles={["USER"]} />}>
             <Route
               path="/profile"
@@ -204,6 +243,14 @@ function App() {
               }
             />
             <Route
+              path="/profile/orders"
+              element={
+                <LayoutWithHeaderFooter>
+                  <ProfileOrders />
+                </LayoutWithHeaderFooter>
+              }
+            />
+            <Route
               path="/cart"
               element={
                 <LayoutWithHeaderFooter>
@@ -211,7 +258,6 @@ function App() {
                 </LayoutWithHeaderFooter>
               }
             />
-            {/* ✅ Order page route */}
             <Route
               path="/order"
               element={
@@ -220,7 +266,6 @@ function App() {
                 </LayoutWithHeaderFooter>
               }
             />
-
             <Route
               path="/order-tracking"
               element={
@@ -230,15 +275,33 @@ function App() {
               }
             />
 
+            {/* ===== REPORT PAGE (USER PROTECTED) ===== */}
+            <Route
+              path="/report"
+              element={
+                <LayoutWithHeaderFooter>
+                  <ReportPage />
+                </LayoutWithHeaderFooter>
+              }
+            />
+
+            {/* ===== MESSAGING PAGE (USER PROTECTED) ===== */}
+            <Route
+              path="/messaging"
+              element={
+                <LayoutWithHeaderFooter>
+                  <MessagingPage />
+                </LayoutWithHeaderFooter>
+              }
+            />
           </Route>
 
-          {/* Admin routes */}
+          {/* ===== ADMIN ROUTES ===== */}
           <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/message" element={<Dashboard initialTab="messages" />} />
           </Route>
         </Routes>
-        {/* ✅ Carbon footprint widget - added globally */}
-       
       </BrowserRouter>
     </AuthProvider>
   );
